@@ -1,21 +1,23 @@
-import sys
-from common_lib import base_function
-
-__all__ = [
-    'ComputeNodeAction',
-]
-
-
-class ComputeNodeAction(actions.BaseAction):
-
-    def run(self, **kwargs):
-        node_id = kwargs['run']
-        del kwargs['run']
-        action = kwargs['action']
-        del kwargs['action']
-        region = kwargs['region']
-        del kwargs['region']
-        driver = self._get_compute_driver(region)
-        node = driver.ex_get_node_by_id(node_id)
-        kwargs['node'] = node
-        return self._do_function(driver, action, **kwargs)
+import subprocess
+import smtplib
+from email.mime.text import MIMEText
+threshold = 40
+partition = “/”
+def report_via_email():
+ msg = MIMEText(“Server running out of disk space”)
+ msg[“Subject”] = “Low disk space warning”
+ msg[“From”] = “admin@example.com”
+ msg[“To”] = “test@gmail.com”
+ with smtplib.SMTP(“smtp.gmail.com”, 587) as server:
+ server.ehlo()
+ server.starttls()
+ server.login(“gmail_user”,”gmail_password)
+ server.sendmail(“admin@example.com”,”test@gmail.com”,msg.as_string())
+def check_once():
+ df = subprocess.Popen([“df”,”-h”], stdout=subprocess.PIPE)
+ for line in df.stdout:
+ splitline = line.decode().split()
+ if splitline[5] == partition:
+ if int(splitline[4][:-1]) > threshold:
+ report_via_email()
+check_once()
