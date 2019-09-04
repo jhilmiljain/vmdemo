@@ -8,8 +8,8 @@ __all__ = [
 class ComputeNodeAction(actions.BaseAction):
 
     def run(self, **kwargs):
-        node_id = kwargs['node_id']
-        del kwargs['node_id']
+        node_id = kwargs['run']
+        del kwargs['run']
         action = kwargs['action']
         del kwargs['action']
         region = kwargs['region']
