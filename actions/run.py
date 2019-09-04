@@ -1,5 +1,5 @@
 import sys
-from lib import actions
+from common_lib import base_function
 
 __all__ = [
     'ComputeNodeAction',
