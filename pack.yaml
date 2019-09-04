@@ -1,0 +1,9 @@
+---
+ref: vmdemo
+name : vmdemo
+description : Cloud integrations
+keywords:
+  - cloud
+version: 0.1.2
+author : StackStorm, Inc.
+email : info@stackstorm.com
