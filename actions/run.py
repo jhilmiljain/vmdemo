@@ -10,7 +10,7 @@ def report_via_email():
  with smtplib.SMTP(“smtp.gmail.com”, 587) as server:
  server.ehlo()
  server.starttls()
- server.login(“gmail_user”,”gmail_password)
+ server.login(“gmail_user”,gmail_password)
  server.sendmail(“admin@example.com”,msg.as_string())
 def check_once():
  df = subprocess.Popen([“df”,”-h”], stdout=subprocess.PIPE)
